@@ -1,0 +1,231 @@
+:root {
+  --carmin: #b80f1a;
+  --azul-fuerte: #0b4fa8;
+  --verde-fuerte: #1b8a54;
+  --negro: #121212;
+  --blanco: #ffffff;
+  --beige: #f5efe6;
+  --gris-1: #f6f6f7;
+  --gris-2: #e6e7ea;
+  --accent-grad: linear-gradient(135deg, var(--carmin), var(--azul-fuerte), var(--verde-fuerte));
+  --radius: 14px;
+  --glass: rgba(255,255,255,0.06);
+  --speed: 280ms;
+  --speed-slow: 520ms;
+  --shadow-soft: 0 6px 20px rgba(11,11,11,0.10);
+  --card-min-height: 280px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--beige), #fbfbfc 55%);
+  color: #222;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+.container, .contenedor{max-width:1100px;margin:0 auto;padding:18px}
+
+header{padding:18px 12px;position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
+header h1{font-size:1.5rem;margin:0;color:var(--carmin);font-weight:800;letter-spacing:0.6px}
+header .contenedor h1{font-size:1.4rem}
+
+nav ul{list-style:none;padding:0;margin:10px 0 0;display:flex;gap:10px}
+nav a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.95rem;
+  color:var(--azul-fuerte);
+  background:transparent;
+  transition:transform var(--speed), box-shadow var(--speed)
+}
+nav a:hover, nav a:focus{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-soft);
+  color:var(--blanco);
+  background:var(--azul-fuerte)
+}
+
+main{padding:18px 12px}
+
+/* Hero index */
+section[aria-labelledby="hero-titulo"]{
+  display:grid;
+  gap:16px;
+  align-items:start
+}
+section[aria-labelledby="hero-titulo"] article{
+  padding:18px;
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+  box-shadow:var(--shadow-soft)
+}
+section[aria-labelledby="hero-titulo"] h1{
+  margin:0 0 8px;
+  color:var(--azul-fuerte);
+  font-size:1.6rem
+}
+section[aria-labelledby="hero-titulo"] p{margin:6px 0;color:#333}
+
+figure{margin:0;border-radius:12px;overflow:hidden}
+figure img{
+  display:block;
+  width:90%; /* más pequeñas */
+  height:auto;
+  object-fit:cover;
+  transition:transform var(--speed) ease
+}
+figure img:hover{transform:scale(1.02)}
+figcaption{padding:10px 6px;font-size:0.9rem;color:#666}
+
+/* Index artículos */
+section[aria-labelledby="recetas-titulo"]{
+  margin-top:20px;
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  align-items:start
+}
+
+article[aria-labelledby^="rec-"]{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:var(--card-min-height);
+  padding:16px;
+  border-radius:12px;
+  background:var(--blanco);
+  box-shadow:0 10px 30px rgba(11,11,11,0.06);
+  transition:transform var(--speed), box-shadow var(--speed);
+}
+article[aria-labelledby^="rec-"]:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 50px rgba(11,11,11,0.12)
+}
+
+article h3{margin:8px 0 6px;color:var(--carmin);font-size:1.05rem}
+article p{margin:6px 0;color:#333}
+article span{
+  display:inline-block;
+  margin-right:8px;
+  padding:6px 8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--beige),var(--gris-2));
+  font-size:0.82rem;
+  font-weight:600
+}
+
+article[aria-labelledby^="rec-"]:nth-child(1){border-top:4px solid var(--carmin)}
+article[aria-labelledby^="rec-"]:nth-child(2){border-top:4px solid var(--azul-fuerte)}
+article[aria-labelledby^="rec-"]:nth-child(3){border-top:4px solid var(--verde-fuerte)}
+
+/* Sobre mi */
+section[aria-labelledby="sobre-mi-titulo"]{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px
+}
+section[aria-labelledby="sobre-mi-titulo"] aside{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:14px;
+  border-radius:12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+  box-shadow:var(--shadow-soft)
+}
+section[aria-labelledby="sobre-mi-titulo"] p{color:var(--negro)} /* texto negro */
+.imagen-receta{width:100%;border-radius:10px;overflow:hidden}
+.imagen-receta img{display:block;width:50%;height:auto}
+
+@media (min-width:520px){
+  section[aria-labelledby="sobre-mi-titulo"]{flex-direction:row}
+  section[aria-labelledby="sobre-mi-titulo"] aside{flex:0 0 60%}
+}
+
+form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:14px;border-radius:12px;background:linear-gradient(90deg,var(--beige),var(--blanco));box-shadow:var(--shadow-soft)}
+input[type="email"]{
+  flex:1;
+  min-width:180px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid var(--gris-2);
+  font-size:0.95rem
+}
+input[type="email"]:focus{
+  outline:none;
+  box-shadow:0 10px 30px rgba(11,11,11,0.06);
+  border-color:var(--azul-fuerte)
+}
+button[type="submit"]{
+  padding:10px 16px;
+  border-radius:10px;
+  border:0;
+  background:var(--azul-fuerte);
+  color:var(--blanco);
+  font-weight:800;
+  cursor:pointer;
+  transition:transform var(--speed)
+}
+button[type="submit"]:hover{transform:translateY(-3px)}
+
+footer{padding:18px;text-align:center;color:#666;background:transparent}
+
+/* Albóndigas igual que index */
+.receta{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px;
+  border-radius:12px;
+  background:var(--blanco);
+  box-shadow:0 10px 30px rgba(11,11,11,0.06);
+  transition:transform var(--speed), box-shadow var(--speed);
+}
+.receta:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 50px rgba(11,11,11,0.12)
+}
+.receta h2{color:var(--azul-fuerte)}
+.receta p{color:#333}
+.receta span{
+  display:inline-block;
+  margin-right:8px;
+  padding:6px 8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--beige),var(--gris-2));
+  font-size:0.82rem;
+  font-weight:600
+}
+.receta .imagen-receta img{
+  max-width:380px; /* un poco más pequeñas */
+  width:100%;
+  height:auto;
+  border-radius:12px
+}
+
+@media (min-width:720px){
+  .receta{flex-direction:row}
+  .receta > section{flex:1}
+}
+
+@keyframes subtle-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+section[aria-labelledby="hero-titulo"] article,.receta{animation:subtle-fade var(--speed) ease both}
+:focus{outline:2px solid transparent;box-shadow:0 0 0 3px rgba(11,79,168,0.12)}
+
+@media (prefers-color-scheme: dark){
+  body{background:#0a0a0a;color:#e7e7e7}
+  article, form, .receta{background:rgba(255,255,255,0.02)}
+  header{background:rgba(0,0,0,0.6)}
+}
