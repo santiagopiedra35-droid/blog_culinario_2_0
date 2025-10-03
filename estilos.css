@@ -1,0 +1,123 @@
+
+:root{
+  --carmin: #b80f1a;
+  --azul-fuerte: #0b4fa8;
+  --verde-fuerte: #0b8a43;
+  --bg: #bdbdbd;
+  --text: #000000;
+  --muted: #666;
+  --card-radius: 12px;
+  --glass: rgba(162, 162, 162, 0.9);
+  --shadow: 0 10px 30px rgb(117, 117, 117);
+  --speed: 320ms;
+  --max-width: 1100px;
+}
+
+body.dark{
+  --bg: #070707;
+  --text: #000000;
+  --muted: #bdbdbd;
+  --glass: rgb(136, 136, 136);
+  --shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
+.container, .contenedor{max-width:var(--max-width);margin:0 auto;padding:18px}
+
+header{
+  position:sticky; top:0; z-index:60;
+  background:linear-gradient(180deg, rgba(101, 101, 101, 0.85), rgba(255,255,255,0.7));
+  backdrop-filter: blur(6px);
+}
+body.dark header{ background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35)); }
+
+header .contenedor{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 18px;
+}
+header h1{font-size:1.35rem;margin:0;color:var(--carmin);font-weight:800;letter-spacing:0.4px}
+
+nav[aria-label="Navegación receta"] ul{list-style:none;margin:0;padding:0;display:flex;gap:10px;align-items:center}
+nav[aria-label="Navegación receta"] a{
+  text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;color:var(--azul-fuerte);background:transparent;transition:transform var(--speed), box-shadow var(--speed);
+}
+nav[aria-label="Navegación receta"] a:hover, nav[aria-label="Navegación receta"] a:focus{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+  color:#fff;background:var(--azul-fuerte);
+}
+
+main{padding:18px}
+.receta{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  padding:18px;
+  border-radius:12px;
+  background:var(--glass);
+  box-shadow:var(--shadow);
+  transition:transform var(--speed), box-shadow var(--speed);
+}
+.receta:hover{transform:translateY(-6px)}
+.receta h2{margin:0;color:var(--azul-fuerte)}
+.receta section{padding:6px 0}
+
+.receta ul, .receta ol{margin:8px 0 12px 1.1rem;padding:0}
+.receta li{margin:8px 0;color:var(--text);line-height:1.6}
+
+.imagen-receta{display:flex;justify-content:center;margin-top:8px}
+.imagen-receta img{
+  display:block;
+  width:100%;
+  max-width:760px; 
+  height:auto;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:var(--shadow);
+  transition:transform 380ms ease;
+}
+.imagen-receta img:hover{transform:scale(1.02)}
+
+@media (max-width:600px){
+  .imagen-receta img{max-width:100%}
+  header .contenedor{padding:10px}
+  nav[aria-label="Navegación receta"] a{padding:7px 10px;font-size:0.95rem}
+}
+
+
+@media (min-width:720px){
+  .receta{
+    flex-direction:row;
+    align-items:flex-start;
+  }
+  .receta > section{flex:1;padding-right:12px}
+  .imagen-receta{flex:0 0 380px;margin-top:0;align-self:flex-start}
+}
+
+#notas p{margin:6px 0;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(154, 154, 154, 0.95), rgb(180, 180, 180));box-shadow:0 6px 18px rgba(11,11,11,0.04)}
+body.dark #notas p{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgb(154, 154, 154))}
+
+.site-footer{padding:22px 0;background:transparent;color:var(--muted)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.footer-socials a{margin-right:10px;color:black(--text);text-decoration:none;display:inline-flex;align-items:center}
+.footer-copy p{margin:0}
+
+
+a{color:var(--azul-fuerte)}
+a:hover{text-decoration:underline}
+
+
+:focus{outline:3px solid rgb(125, 125, 125);outline-offset:2px}
+
+@keyframes subtle-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.receta, .imagen-receta img, header .contenedor{animation:subtle-fade 460ms ease both}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+body.dark .receta{background:var(--glass);box-shadow:var(--shadow)}
+body.dark header h1{color:var(--carmin)}
